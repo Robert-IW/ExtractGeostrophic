@@ -56,7 +56,7 @@ station.loc <- read.table("~/R_projects-CS/ame-temporalbabe/CS-ExtractFeatures/s
 mylist <- sapply(station.loc[,3],function(x) NULL)
 
 # For each station
-for (h in 60:nrow(station.loc)){
+for (h in 107:nrow(station.loc)){
   
   stat.name <- station.loc$station[h]
   st.lon <- station.loc$lon[h]
@@ -357,7 +357,7 @@ for (h in 60:nrow(station.loc)){
   C <- bind_rows(vgos.df.along,vgos.df.off,vgos.df.local)
   D <- bind_rows(ugos.df.along,ugos.df.off,ugos.df.local)
   
-  df <- bind_rows(A,B,C,D)
+  df <- cbind(A,uanom=B$uanom,vgeos=C$vgeos,ugeos=D$ugeos,stringsAsFactors=F)
   rm(A,B,C,D)
   
   mylist[[h]] <- df
